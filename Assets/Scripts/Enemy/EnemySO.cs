@@ -11,9 +11,16 @@ public class EnemySO : ScriptableObject
         Range
     }
 
-    public EnemyType type;
     public string enemyName;
-    public float movementSpeed;
+    public EnemyType type;
+    [Header("Move Settings")]
+    public float patrolDistance;
+    public float patrolSpeed;
+    public float chaseSpeed;
     public float rotateSpeed;
+    public float chaseDistance;
+    [Header("Attack Settings")]
     public float fireRate;
+    public float attackDistance;
+    
 }
