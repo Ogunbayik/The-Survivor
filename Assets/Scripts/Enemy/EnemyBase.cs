@@ -14,25 +14,26 @@ public class EnemyBase : MonoBehaviour
 
     [SerializeField] protected EnemySO enemySO;
 
+    protected MeshRenderer meshRenderer;
     protected PlayerController player;
     protected float distanceBetweenPlayer;
-    protected float maximumBorderX;
-    protected float minimumBorderX;
-    protected float maximumBorderZ;
-    protected float minimumBorderZ;
+    private void Awake()
+    {
+        meshRenderer = GetComponentInChildren<MeshRenderer>();
+        player = FindObjectOfType<PlayerController>();
+    }
 
     void Start()
     {
-        player = FindObjectOfType<PlayerController>();
-        currentState = States.Patrol;
-
-        maximumBorderX = transform.localPosition.x + enemySO.patrolDistance;
-        maximumBorderZ = transform.localPosition.z + enemySO.patrolDistance;
-        minimumBorderX = transform.localPosition.x - enemySO.patrolDistance;
-        minimumBorderZ = transform.localPosition.z - enemySO.patrolDistance;
+        Initialize();
     }
 
-    // Update is called once per frame
+    protected virtual void Initialize()
+    {
+        currentState = States.Patrol;
+        meshRenderer.material.color = enemySO.color;
+    }
+
     void Update()
     {
         switch(currentState)
@@ -59,7 +60,8 @@ public class EnemyBase : MonoBehaviour
 
     protected virtual void Chasing()
     {
-        Debug.Log("Chasing");
+        ChasePlayer();
+
         distanceBetweenPlayer = Vector3.Distance(transform.position, player.transform.position);
 
         if (distanceBetweenPlayer >= enemySO.chaseDistance)
@@ -68,6 +70,15 @@ public class EnemyBase : MonoBehaviour
         if (distanceBetweenPlayer <= enemySO.attackDistance && enemySO.type != EnemySO.EnemyType.Melee)
             currentState = States.Attack;
 
+    }
+    private void ChasePlayer()
+    {
+        distanceBetweenPlayer = Vector3.Distance(transform.position, player.transform.position);
+
+        if (distanceBetweenPlayer < enemySO.chaseDistance)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, player.transform.position, enemySO.chaseSpeed * Time.deltaTime);
+        }
     }
 
     protected virtual void Attacking()
@@ -80,15 +91,5 @@ public class EnemyBase : MonoBehaviour
         if (attackOutOfRange <= distanceBetweenPlayer)
             currentState = States.Chase;
         
-    }
-
-    protected virtual void HandleMovement()
-    {
-        distanceBetweenPlayer = Vector3.Distance(transform.position, player.transform.position);
-
-        if (distanceBetweenPlayer < enemySO.chaseDistance)
-        {
-            transform.position = Vector3.MoveTowards(transform.position, player.transform.position, enemySO.chaseSpeed * Time.deltaTime);
-        }
     }
 }

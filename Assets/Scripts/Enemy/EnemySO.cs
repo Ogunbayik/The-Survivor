@@ -22,5 +22,7 @@ public class EnemySO : ScriptableObject
     [Header("Attack Settings")]
     public float fireRate;
     public float attackDistance;
+    [Header("General Settings")]
+    public Color color;
     
 }
