@@ -10,17 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c5319cc08937026418b45a4860b58d19, type: 3}
-  m_Name: Witch
+  m_Name: Skeleton Archer
   m_EditorClassIdentifier: 
-  enemyName: Witch
+  enemyName: Skeleton Archer
   type: 1
-  patrolDistance: 0
-  patrolSpeed: 0
-  chaseSpeed: 0
+  patrolDistance: 3
+  patrolSpeed: 3
+  chaseSpeed: 4
   rotateSpeed: 0
-  chaseDistance: 100
-  attackPrefab: {fileID: 2779441929092578945, guid: bce8aaf0c34a33a499c402493c22965d, type: 3}
-  prefabSpeed: 5
-  fireRate: 2
-  attackDistance: 100
-  color: {r: 0.6749296, g: 0, b: 1, a: 1}
+  chaseDistance: 7
+  attackPrefab: {fileID: 0}
+  prefabSpeed: 3
+  fireRate: 0
+  attackDistance: 4
+  color: {r: 0.41509432, g: 0.3220796, b: 0.18953362, a: 1}

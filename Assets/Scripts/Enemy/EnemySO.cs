@@ -20,6 +20,8 @@ public class EnemySO : ScriptableObject
     public float rotateSpeed;
     public float chaseDistance;
     [Header("Attack Settings")]
+    public Transform attackPrefab;
+    public float prefabSpeed;
     public float fireRate;
     public float attackDistance;
     [Header("General Settings")]

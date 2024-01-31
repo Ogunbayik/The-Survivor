@@ -83,8 +83,6 @@ public class EnemyBase : MonoBehaviour
 
     protected virtual void Attacking()
     {
-        Debug.Log("Attacking");
-
         distanceBetweenPlayer = Vector3.Distance(transform.position, player.transform.position);
         var attackOutOfRange = enemySO.attackDistance + 2f;
 

@@ -13,9 +13,10 @@ public class PlayerController : MonoBehaviour
     private float verticalInput;
 
     private Vector3 movementDirection;
+    private bool isMove;
     void Start()
     {
-        
+        isMove = false;
     }
 
     // Update is called once per frame
@@ -33,6 +34,11 @@ public class PlayerController : MonoBehaviour
         movementDirection = new Vector3(horizontalInput, 0f, verticalInput);
         movementDirection.Normalize();
 
-        transform.Translate(movementDirection * movementSpeed * Time.deltaTime);
+        if (movementDirection != Vector3.zero)
+            isMove = true;
+
+        if (isMove)
+            transform.Translate(movementDirection * movementSpeed * Time.deltaTime);
     }
+
 }

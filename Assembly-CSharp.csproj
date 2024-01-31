@@ -54,11 +54,14 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\PlayerController.cs" />
+    <Compile Include="Assets\Scripts\PlayerHealthManager.cs" />
+    <Compile Include="Assets\Scripts\Enemy\Skeleton.cs" />
+    <Compile Include="Assets\Scripts\Fireball.cs" />
     <Compile Include="Assets\Scripts\Enemy\Zombie.cs" />
+    <Compile Include="Assets\Scripts\Enemy\Witch.cs" />
     <Compile Include="Assets\Scripts\Enemy\EnemySO.cs" />
     <Compile Include="Assets\Scripts\Enemy\EnemyBase.cs" />
-    <Compile Include="Assets\Scripts\Enemy\Witch.cs" />
-    <Compile Include="Assets\Scripts\Enemy\Skeleton.cs" />
+    <Compile Include="Assets\Scripts\Enemy\SkeletonArcher.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
