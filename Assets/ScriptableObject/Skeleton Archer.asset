@@ -14,13 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyName: Skeleton Archer
   type: 1
-  patrolDistance: 3
+  patrolDistance: 4
   patrolSpeed: 3
   chaseSpeed: 4
   rotateSpeed: 0
-  chaseDistance: 7
-  attackPrefab: {fileID: 0}
+  chaseDistance: 8
+  attackPrefab: {fileID: 1655946148117432313, guid: 5b988a36e750d304697dff7afca5bc3a, type: 3}
   prefabSpeed: 3
-  fireRate: 0
-  attackDistance: 4
+  fireRate: 0.3
+  attackDistance: 6
   color: {r: 0.41509432, g: 0.3220796, b: 0.18953362, a: 1}

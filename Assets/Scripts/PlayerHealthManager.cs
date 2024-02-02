@@ -18,11 +18,20 @@ public class PlayerHealthManager : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        var fireball = other.gameObject.GetComponent<Fireball>();
-        var fireBallDamage = 2;
+        var enemyPrefab = other.gameObject.GetComponent<EnemyFirePrefab>();
 
-        if (fireball)
-            DecreaseHealth(fireBallDamage);
+        var fireBallDamage = 10;
+        var arrowDamage = 4;
+
+        if (enemyPrefab)
+        {
+            if (enemyPrefab.fireType == EnemyFirePrefab.FireType.Fireball)
+                DecreaseHealth(fireBallDamage);
+            else if (enemyPrefab.fireType == EnemyFirePrefab.FireType.Arrow)
+                DecreaseHealth(arrowDamage);
+
+        }
+            
     }
 
     private void DecreaseHealth(int health)

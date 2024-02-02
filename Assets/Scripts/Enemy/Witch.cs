@@ -65,7 +65,7 @@ public class Witch : EnemyBase
         var fireball = Instantiate(enemySO.attackPrefab);
         fireball.transform.position = attackPoint.position;
         fireball.transform.rotation = transform.rotation;
-        fireball.GetComponent<Fireball>().Movement(enemySO.prefabSpeed, Vector3.forward);
+        fireball.GetComponent<EnemyFirePrefab>().SetPrefab(enemySO.prefabSpeed, Vector3.forward, EnemyFirePrefab.FireType.Fireball);
     }
 
     private Vector3 GetRandomTeleportPoint()
