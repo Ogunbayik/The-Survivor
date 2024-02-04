@@ -53,8 +53,6 @@ public class SkeletonArcher : EnemyBase
                 maxNextAttackTimer = 3;
                 break;
         }
-
-     
     }
 
     protected override void Patrolling()
@@ -78,22 +76,11 @@ public class SkeletonArcher : EnemyBase
                 MultipleAttack();
                 break;
             case ArcherType.Area:
+                AreaAttack();
                 break;
         }
 
-
-        MultipleAttack();
-
         base.Attacking();
-    }
-
-    private void CreateArrow()
-    {
-        var arrow = Instantiate(enemySO.attackPrefab);
-        arrow.transform.position = attackPoint.position;
-        arrow.transform.rotation = transform.rotation;
-
-        arrow.GetComponent<EnemyFirePrefab>().SetPrefab(enemySO.prefabSpeed, Vector3.forward, EnemyFirePrefab.FireType.Arrow);
     }
     private void ClassicAttack()
     {
@@ -105,7 +92,7 @@ public class SkeletonArcher : EnemyBase
                 HandleRotation();
                 attackTimer = enemySO.fireRate;
                 arrowCount++;
-                CreateArrow();
+                CreateArrow(attackPoint.position, transform.rotation,Vector3.zero);
             }
         }
         else
@@ -129,7 +116,7 @@ public class SkeletonArcher : EnemyBase
                 HandleRotation();
                 attackTimer = enemySO.fireRate;
                 arrowCount++;
-                CreateArrow();
+                CreateArrow(attackPoint.position, transform.rotation, Vector3.zero);
             }
         }
         else
@@ -141,6 +128,34 @@ public class SkeletonArcher : EnemyBase
                 nextAttackTimer = maxNextAttackTimer;
             }
         }
+    }
+
+    private void AreaAttack()
+    {
+        attackTimer -= Time.deltaTime;
+        if(attackTimer <= 0)
+        {
+            HandleRotation();
+            var nextAttackTimer = 3f;
+            attackTimer = nextAttackTimer;
+
+            var firstDegree = new Vector3(0f, 15f, 0f);
+            var secondDegree = new Vector3(0f, -15f, 0f);
+            CreateArrow(transform.position, transform.rotation, Vector3.zero);
+            CreateArrow(transform.position, transform.rotation, firstDegree);
+            CreateArrow(transform.position, transform.rotation, secondDegree);
+        }
+        
+    }
+
+    private void CreateArrow(Vector3 position, Quaternion rotation, Vector3 degree)
+    {
+        var arrow = Instantiate(enemySO.attackPrefab);
+        arrow.transform.position = position;
+        arrow.transform.rotation = rotation;
+        arrow.Rotate(degree);
+
+        arrow.GetComponent<EnemyFirePrefab>().SetPrefab(enemySO.prefabSpeed, Vector3.forward, EnemyFirePrefab.FireType.Arrow);
     }
 
     private void HandleRotation()

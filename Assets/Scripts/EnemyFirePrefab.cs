@@ -31,4 +31,10 @@ public class EnemyFirePrefab : MonoBehaviour
 
         transform.Translate(movementDirection * movementSpeed * Time.deltaTime);
     }
+
+    public void SetRotation(Quaternion rotation)
+    {
+
+    }
+
 }
